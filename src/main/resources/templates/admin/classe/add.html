@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Ajouter Classe</title>
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+
+    <div layout:fragment="content" class="content-wrapper">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-12">
+                        <h1>Gestion des Classes</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content">
+
+            <div class="card">
+                <div class="card-header">
+                    <h5>Ajouter un classe</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <form action="#" th:action="@{/admin/classe/add}" th:object="${classe}" method="post" novalidate>
+
+                                <div class="form-row">
+
+                                    <div class="form-group col-md-6">
+                                        <label class="text-muted text-sm" for="Label">Label:</label>
+                                        <input type="text" id="Label" class="form-control" th:field="*{Label}" placeholder="Label"
+                                               th:classappend="${not #lists.isEmpty(#fields.errors('Label'))} ? is-invalid">
+                                        <div class="invalid-feedback">
+                                            <span th:if="${#fields.hasErrors('Label')}" th:errors="*{Label}"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label class="text-muted text-sm" for="nomComplet">Nom Complet:</label>
+                                        <input type="text" id="nomComplet" class="form-control" th:field="*{nomComplet}" placeholder="nomComplet"
+                                               th:classappend="${not #lists.isEmpty(#fields.errors('nomComplet'))} ? is-invalid">
+                                        <div class="invalid-feedback">
+                                            <span th:if="${#fields.hasErrors('nomComplet')}" th:errors="*{nomComplet}"></span>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label class="text-muted text-sm" for="matieres">Matiere:</label>
+                                            <ul >
+                                                <li th:each="matiere: ${matieres}">
+                                                    <input type="checkbox"
+                                                           th:field="*{matieres}"
+                                                           th:value="${matiere.id}" th:text="${matiere.Label}" />
+                                                </li>
+                                            </ul>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            <span th:if="${#fields.hasErrors('matieres')}" th:errors="*{matieres}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <button class="btn btn-sm btn-info" type="submit">AJOUTER</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <aside class="control-sidebar control-sidebar-dark">
+    </aside>
+</div>
+
+</body>
+</html>

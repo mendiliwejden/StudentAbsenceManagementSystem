@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>INDEX</title>
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+
+    <div layout:fragment="content" class="content-wrapper">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-12">
+                        <h1>Statistique des Absences</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content">
+            <div class="card">
+                <div class="card-header">
+                    <h3> absence total :</h3>
+                    <p th:text="${{sum}}"> </p>
+                </div>
+           <div class="card-body">
+
+                <table id="myDataTable" class="table table-bordered table-striped" >
+                    <tr th:each="m: ${studentAbsence}">
+                        <td th:text="${{m.key}}" />
+                        <td th:text="${{m.value}}" />
+                    </tr>
+                </table>
+           </div>
+            </div>
+
+
+        </section>
+    </div>
+
+    <aside class="control-sidebar control-sidebar-dark">
+    </aside>
+</div>
+
+</body>
+</html>

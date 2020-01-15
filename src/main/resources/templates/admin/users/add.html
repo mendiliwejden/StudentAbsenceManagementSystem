@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>ADD USER</title>
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+
+    <div layout:fragment="content" class="content-wrapper">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-12">
+                        <h1>Gestion des utilisateurs</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content">
+
+            <div class="card">
+                <div class="card-header">
+                    <h5>Ajouter un utilisateur</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <form action="#" th:action="@{/admin/users/add}" th:object="${user}" method="post" novalidate>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label class="text-muted text-sm" for="roles">Role:</label>
+                                        <select th:field="*{roles}" id="roles" class="custom-select mr-sm-2"
+                                                th:classappend="${not #lists.isEmpty(#fields.errors('roles'))} ? is-invalid">
+                                            <option selected disabled value="">Choisissez un role ...</option>
+                                            <option th:each="role : ${roles}"
+                                                    th:value="${role.id}" th:text="${role.name}"></option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            <span th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label class="text-muted text-sm" for="lastName">Nom:</label>
+                                        <input type="text" id="lastName" class="form-control" th:field="*{lastName}" placeholder="Nom"
+                                               th:classappend="${not #lists.isEmpty(#fields.errors('lastName'))} ? is-invalid">
+                                        <div class="invalid-feedback">
+                                            <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="text-muted text-sm" for="firstName">Prénom:</label>
+                                        <input type="text" id="firstName" class="form-control" th:field="*{firstName}" placeholder="Prénom"
+                                               th:classappend="${not #lists.isEmpty(#fields.errors('firstName'))} ? is-invalid">
+                                        <div class="invalid-feedback">
+                                            <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label class="text-muted text-sm" for="email">Adresse email:</label>
+                                        <input type="email" id="email" class="form-control" th:field="*{email}" placeholder="Email"
+                                               th:classappend="${not #lists.isEmpty(#fields.errors('email'))} ? is-invalid">
+                                        <div class="invalid-feedback">
+                                            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="text-muted text-sm" for="phone">N° Tel:</label>
+                                        <input type="text" id="phone" class="form-control" th:field="*{phone}" placeholder="N° Tel">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label class="text-muted text-sm" for="password">Mot de passe:</label>
+                                        <input type="password" id="password" class="form-control" th:field="*{password}" placeholder="Mot de passe"
+                                               th:classappend="${not #lists.isEmpty(#fields.errors('password'))} ? is-invalid">
+                                        <div class="invalid-feedback">
+                                            <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="text-muted text-sm" for="confirmPassword">Confirmer mot de passe:</label>
+                                        <input type="password" id="confirmPassword" class="form-control" th:field="*{confirmPassword}" placeholder="Confirmer mot de passe"
+                                               th:classappend="${not #lists.isEmpty(#fields.errors('password'))} ? is-invalid">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <button class="btn btn-sm btn-info" type="submit">AJOUTER</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <aside class="control-sidebar control-sidebar-dark">
+    </aside>
+</div>
+
+</body>
+</html>

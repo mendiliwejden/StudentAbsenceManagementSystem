@@ -1,0 +1,33 @@
+<!-- Navbar -->
+<nav xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" th:fragment="header"
+     class="main-header navbar navbar-expand navbar-info navbar-dark">
+
+
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="dropdown" href="#">
+                <i class="far fa-user"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                <span class="dropdown-item dropdown-header"><a th:href="@{/users/profil}" >Profile</a></span>
+                <div class="dropdown-divider"></div>
+                <a href="#" class="dropdown-item">
+                    <div class="media">
+                        <img th:src="@{/img/user1-128x128.jpg}" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                        <div class="media-body">
+<!--                            <p class="dropdown-item-title" sec:authentication="principal.firstName">Brad Diesel</p>-->
+                            <p class="dropdown-item-title text-muted" sec:authentication="name">b.diesel@email.com</p>
+                        </div>
+                    </div>
+                </a>
+                <div class="dropdown-divider"></div>
+                <a th:href="@{/logout}" class="dropdown-item dropdown-footer">Déconnexion</a>
+            </div>
+        </li>
+<!--        <li class="nav-item">-->
+<!--            <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#">-->
+<!--                <i class="fas fa-th-large"></i>-->
+<!--            </a>-->
+<!--        </li>-->
+    </ul>
+</nav>

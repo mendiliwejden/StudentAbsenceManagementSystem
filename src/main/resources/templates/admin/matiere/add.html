@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Ajouter Matiere</title>
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+
+    <div layout:fragment="content" class="content-wrapper">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-12">
+                        <h1>Gestion des Matieres</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content">
+
+            <div class="card">
+                <div class="card-header">
+                    <h5>Ajouter un matiere</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <form action="#" th:action="@{/admin/matiere/add}" th:object="${matiere}" method="post" novalidate>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label class="text-muted text-sm" for="libelle">Label:</label>
+                                        <input type="text" id="libelle" class="form-control" th:field="*{label}" placeholder="label"
+                                               th:classappend="${not #lists.isEmpty(#fields.errors('label'))} ? is-invalid">
+                                        <div class="invalid-feedback">
+                                            <span th:if="${#fields.hasErrors('label')}" th:errors="*{label}"></span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label class="text-muted text-sm" for="heure">Nombre heure:</label>
+                                        <input type="number" id="heure" class="form-control" th:field="*{heure}"
+                                               th:classappend="${not #lists.isEmpty(#fields.errors('heure'))} ? is-invalid">
+                                        <div class="invalid-feedback">
+                                            <span th:if="${#fields.hasErrors('heure')}" th:errors="*{heure}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <button class="btn btn-sm btn-info" type="submit">AJOUTER</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <aside class="control-sidebar control-sidebar-dark">
+    </aside>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>INDEX</title>
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+
+    <div layout:fragment="content" class="content-wrapper">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-12">
+                        <h1>Gestion des Classes</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content">
+
+            <div class="card">
+                <div class="card-header">
+                    <a class="btn btn-info" th:href="@{/admin/classe/add}"><i class="fas fa-plus"></i></a>
+                </div>
+                <div class="card-body">
+                    <table id="myDataTable" class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Label</th>
+                            <th>Nom Complet</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <tr th:each="classe : ${classes}">
+                            <td th:text="${classe.id}"></td>
+                            <td th:text="${classe.Label}"></td>
+                            <td th:text="${classe.nomComplet}"></td>
+                            <td>
+                                <a th:href="@{/admin/classe/{id}/update (id=${classe.id})}" class="btn btn-sm btn-info"><i class="fas fa-edit"></i></a>
+                                <a th:href="@{/admin/classe/{id}/delete (id=${classe.id})}" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <aside class="control-sidebar control-sidebar-dark">
+    </aside>
+</div>
+
+</body>
+</html>

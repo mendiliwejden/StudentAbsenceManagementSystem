@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Gerer les Absences</title>
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+
+    <div layout:fragment="content" class="content-wrapper">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-12">
+                        <h1>Gerer les Absences des Etudiants</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content">
+
+
+            <table class="table table-bordered">
+                <thead >
+                <tr>
+                    <th scope="col">Nom etudiant</th>
+                    <th:block th:each="matiere : ${matieres}">
+                        <th th:text="${matiere.label}" ></th>
+                    </th:block>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="etudiant : ${etudiants}" >
+                    <td th:text="${etudiant.nom} + ' '+ ${etudiant.prenom} "></td>
+                    <th:block th:each="matiere : ${matieres}">
+                        <td style="text-align: center;">
+                            <a  th:href="@{/admin/absence/{matricule}/{Id}(matricule = ${etudiant.matricule}, Id = ${matiere.id})}" class="btn btn-primary">Absent</a>
+
+                        </td>
+                    </th:block>
+                </tr>
+
+
+                </tbody>
+            </table>
+
+
+        </section>
+
+    </div>
+
+    <aside class="control-sidebar control-sidebar-dark">
+    </aside>
+</div>
+
+</body>
+</html>

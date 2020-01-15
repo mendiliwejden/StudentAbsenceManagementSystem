@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>UPDATE USER</title>
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+
+    <div layout:fragment="content" class="content-wrapper">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-12">
+                        <h1>Gestion des etudiants</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content">
+
+            <div class="card">
+                <div class="card-header">
+                    <h5>Modifier un etudiant</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <form action="#" th:action="@{/admin/etudiant/{id}/update (id=${etudiant.id})}" th:object="${etudiant}" method="post">
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label class="text-muted text-sm" for="classes">Classe:</label>
+                                        <select th:field="*{classes}" id="classes" class="custom-select mr-sm-2"
+                                                th:classappend="${not #lists.isEmpty(#fields.errors('classes'))} ? is-invalid">
+                                            <option selected disabled value="">Choisissez un classe ...</option>
+                                            <option th:each="classe : ${classes}"
+                                                    th:value="${classe.id}" th:text="${classe.libelleClasse}">
+
+                                            </option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            <span th:if="${#fields.hasErrors('classes')}" th:errors="*{classes}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label class="text-muted text-sm" for="nom">Nom:</label>
+                                        <input type="text" id="nom" class="form-control" th:field="*{nom}" placeholder="Nom"
+                                               th:classappend="${not #lists.isEmpty(#fields.errors('nom'))} ? is-invalid">
+                                        <div class="invalid-feedback">
+                                            <span th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="text-muted text-sm" for="prenom">Prénom:</label>
+                                        <input type="text" id="prenom" class="form-control" th:field="*{prenom}" placeholder="Prénom"
+                                               th:classappend="${not #lists.isEmpty(#fields.errors('prenom'))} ? is-invalid">
+                                        <div class="invalid-feedback">
+                                            <span th:if="${#fields.hasErrors('prenom')}" th:errors="*{prenom}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label class="text-muted text-sm" for="email">Adresse email:</label>
+                                        <input type="email" id="email" class="form-control" th:field="*{email}" placeholder="Email"
+                                               th:classappend="${not #lists.isEmpty(#fields.errors('email'))} ? is-invalid">
+                                        <div class="invalid-feedback">
+                                            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <button class="btn btn-sm btn-info" type="submit">MODIFIER</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <aside class="control-sidebar control-sidebar-dark">
+    </aside>
+</div>
+
+</body>
+</html>
